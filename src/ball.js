@@ -1,3 +1,5 @@
+import { collision } from "./collision";
+
 export default class Ball {
   constructor(game) {
     this.game = game;
@@ -36,16 +38,20 @@ export default class Ball {
     if (this.position.y + this.size > this.gameHeight || this.position.y < 0) {
       this.speed.y = -this.speed.y;
     }
-    //Collision with paddle
-    let ballBottom = this.position.y + this.size;
-    let paddleTop = this.game.paddle.position.y;
-    let paddleLeft = this.game.paddle.position.x;
-    let paddleRight = this.game.paddle.position.x + this.game.paddle.width;
-    if (
-      ballBottom >= paddleTop &&
-      this.position.x >= paddleLeft &&
-      this.position.x + this.size <= paddleRight
-    ) {
+    // //Collision with paddle
+    // let ballBottom = this.position.y + this.size;
+    // let paddleTop = this.game.paddle.position.y;
+    // let paddleLeft = this.game.paddle.position.x;
+    // let paddleRight = this.game.paddle.position.x + this.game.paddle.width;
+    // if (
+    //   ballBottom >= paddleTop &&
+    //   this.position.x >= paddleLeft &&
+    //   this.position.x + this.size <= paddleRight
+    // ) {
+    //   this.speed.y = -this.speed.y;
+    //   this.position.y = this.game.paddle.position.y - this.size;
+    // }
+    if (collision(this, this.game.paddle)) {
       this.speed.y = -this.speed.y;
       this.position.y = this.game.paddle.position.y - this.size;
     }
