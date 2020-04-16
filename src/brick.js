@@ -9,13 +9,13 @@ export default class Brick {
     this.position = position;
     this.width = 80;
     this.height = 24;
-    this.markedForDetection = false;
+    this.markedForDeletion = false;
   }
 
   update() {
     if (collision(this.game.ball, this)) {
       this.game.ball.speed.y = -this.game.ball.speed.y;
-      this.markedForDetection = true;
+      this.markedForDeletion = true;
     }
   }
 
